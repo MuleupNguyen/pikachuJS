@@ -1,0 +1,99 @@
+#game-container {
+    margin: 0 auto;
+}
+
+#game-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    pointer-events: none;
+    /* Tùy chỉnh kích thước */
+    width: 900px;
+    height: 600px;
+    /* Tùy chỉnh màu sắc */
+    background-color: transparent;
+}
+
+#score-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-size: 24px;
+}
+
+#score-label {
+    margin-right: 10px;
+}
+
+#score-display {
+    font-weight: bold;
+}
+
+#content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#board-container {
+    display: grid;
+    grid-template-columns: repeat(12, 0fr);
+    grid-template-rows: repeat(12, 0fr);
+    /*grid-gap: 10px;*/
+    width: 660px;
+    margin: 0 auto;
+    padding: 20px;
+    /*background-color: #fff;*/
+    /*box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);*/
+}
+
+.tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*font-size: 36px;*/
+    font-weight: bold;
+    color: #fff;
+    background-color: #673ab7;
+    border: 1px solid #0a53be;
+    /*border-radius: 10px;*/
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tile.selected {
+    background-color: #2196f3;
+}
+
+.tile.selected img {
+    border-color: rgb(0, 153, 51);
+    opacity: 0.5;
+}
+
+.tile:hover {
+    border: #ee2e2e solid 1px;
+    opacity: 0.6;
+}
+
+.tile.matched {
+    width: 51px;
+    height: 51px;
+    visibility: hidden;
+}
+
+.line {
+    position: absolute;
+    border-top: 3px solid red;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.d-none {
+    display: none;
+}
+
+#canvas {
+    position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+    display: none;
+}
