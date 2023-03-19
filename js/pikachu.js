@@ -2,7 +2,7 @@ const data = [];
 for (let i = 1; i <= 36; i++) {
     const obj = {
         id: i,
-        image: "./images/pieces" + i + ".png"
+        image: "../images/pieces" + i + ".png"
     };
     data.push(obj);
 }
@@ -157,31 +157,31 @@ function createBoard() {
     const boardContainer = document.querySelector("#board-container");
     for (let row = 0; row < ROW_COUNT; row++) {
         for (let col = 0; col < COL_COUNT; col++) {
-                const tile = _pokemons[row][col];
-                const tileElement = document.createElement("div");
+            const tile = _pokemons[row][col];
+            const tileElement = document.createElement("div");
 
-                tileElement.classList.add("tile");
-                tileElement.dataset.row = row;
-                tileElement.dataset.col = col;
-                tileElement.dataset.tile = tile;
+            tileElement.classList.add("tile");
+            tileElement.dataset.row = row;
+            tileElement.dataset.col = col;
+            tileElement.dataset.tile = tile;
 
-                if(tile != -1) {
-                    //lấy ra ảnh
-                    const img = document.createElement("img");
-                    const imgInData = data.find(function(item) {
-                        return  item.id === tile;
-                    });
-                    img.src = imgInData.image
-                    img.width = 50;
-                    img.height = 50;
-                    tileElement.appendChild(img)
-                    tileElement.addEventListener("click", handleTileClick);
-                    boardContainer.appendChild(tileElement);
-                }else {
-                    tileElement.classList.add("matched");
-                    tileElement.classList.add("selected");
-                    boardContainer.appendChild(tileElement);
-                }
+            if(tile != -1) {
+                //lấy ra ảnh
+                const img = document.createElement("img");
+                const imgInData = data.find(function(item) {
+                    return  item.id === tile;
+                });
+                img.src = imgInData.image
+                img.width = 50;
+                img.height = 50;
+                tileElement.appendChild(img)
+                tileElement.addEventListener("click", handleTileClick);
+                boardContainer.appendChild(tileElement);
+            }else {
+                tileElement.classList.add("matched");
+                tileElement.classList.add("selected");
+                boardContainer.appendChild(tileElement);
+            }
         }
     }
 }
@@ -245,9 +245,9 @@ function checkPokemon(){
     let count=0;
     for (let i = 0; i < ROW_COUNT; ++i) {
         for (let j = 0; j < COL_COUNT; ++j) {
-           if(_pokemons[i][j] !== -1) {
-               count++;
-           }
+            if(_pokemons[i][j] !== -1) {
+                count++;
+            }
         }
     }
     return count;
@@ -426,6 +426,7 @@ function uplevel(x1, y1, x2, y2) {
 
 }
 //đổ sang trái
+//level2
 function goLeft(x1, y1, x2, y2) {
     if(x1 != x2) {
         deleteLeftOneNode(x1, y1)
@@ -478,6 +479,7 @@ function deleteLeftTwoNode(x, y1, y2) {
 }
 
 //đổ sang phải
+//level 3
 function goRight(x1, y1, x2, y2) {
     if(x1 != x2) {
         deleteRightOneNode(x1, y1)
@@ -528,6 +530,7 @@ function deleteRightTwoNode(x, y1, y2) {
 }
 
 // đổ lên trên
+//level 4
 function goTop(x1, y1, x2, y2) {
     if(y1 != y2) {
         deleteTopOneNode(x1, y1)
@@ -576,6 +579,7 @@ function deleteTopTwoNode(x1, x2, y) {
     resetArr()
 }
 //đổ xuống dưới
+// level 5
 function goBottom(x1, y1, x2, y2) {
     if(y1 != y2) {
         deleteBottomOneNode(x1, y1)
@@ -624,6 +628,7 @@ function deleteBottomTwoNode(x1, x2, y) {
 }
 
 //vào trung tâm theo hàng ngang
+//level 6
 function goCenter(x1, y1, x2, y2) {
     if(x1 != x2) {
         deleteCenterOneNode(x1, y1)
@@ -675,6 +680,7 @@ function deleteCenterTwoNode(x, y1, y2) {
     resetArr()
 }
 //vào trung tâm theo hàng dọc
+// level 7
 function goCenterCol(x1,y1,x2,y2) {
     if(y1 != y2) {
         deleteCenterOneNodeCol(x1, y1)
@@ -727,6 +733,7 @@ function deleteCenterOneNodeCol(x,y){
     resetArr()
 }
 //top sang bên trái, bot sang bên phải
+// level 8
 function goTopLAndBottomR(x1, y1, x2, y2) {
     if(x1 != x2) {
         deleteTopLAndBottomROneNode(x1, y1)
@@ -753,17 +760,18 @@ function deleteTopLAndBottomRTwoNode(x, y1, y2){
 }
 
 //bên trái xuống dưới, bên trái lên trên
+// level 9
 function goLeftDAnRightU(x1, y1, x2, y2) {
     if(y1 != y2) {
-        deleteTopLAndBottomROneNode(x1,y1)
-        deleteTopLAndBottomROneNode(x2,y2)
+        deleteLeftTAndRightBOneNode(x1,y1)
+        deleteLeftTAndRightBOneNode(x2,y2)
     }else {
         deleteLeftDAnRightUTwoNode(x1, x2, y1)
     }
     createBoard()
 }
 
-function deleteTopLAndBottomROneNode(x, y) {
+function deleteLeftTAndRightBOneNode(x, y) {
     if(y <= 5){
         deleteTopOneNode(x,y)
     } else {
