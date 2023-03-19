@@ -2,7 +2,7 @@ const data = [];
 for (let i = 1; i <= 36; i++) {
     const obj = {
         id: i,
-        image: "../images/pieces" + i + ".png"
+        image: "./images/pieces" + i + ".png"
     };
     data.push(obj);
 }
